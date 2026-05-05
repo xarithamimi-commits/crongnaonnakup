@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบรับสมัครนักศึกษา</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="app-toast" class="toast" role="status" aria-live="polite"></div>
+
+    <div class="nav-bar">
+        <button type="button" class="nav-btn active" onclick="switchTab('form', this)">📝 กรอกใบสมัคร</button>
+        <button type="button" class="nav-btn" onclick="switchTab('admin', this)">🔒 เจ้าหน้าที่ (Admin)</button>
+    </div>
+
+    <div id="page-form" class="page-section active">
+        <div class="uu-form">
+            <div class="logo-1">
+                <h1>วิทยาลัยเทคโนโลยีพณิชยการบางบัวทอง</h1>
+            </div>
+
+            <form id="appForm">
+                <fieldset>
+                    <legend>ข้อมูลการสมัคร</legend>
+                    <div class="form-row">
+                        <label>วันที่สมัคร</label> <input type="date" name="applicationDate" required>
+                        <label>ปีการศึกษา</label> <input type="text" name="academicYear" placeholder="2569" required>
+                    </div>
+
+                    <p>หลักสูตร</p>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="course_option" value="ปวช."> ปวช.</label>
+                        <label><input type="checkbox" name="course_option" value="ปวส.(จบปวช)"> ปวส.(จบปวช)</label>
+                        <label><input type="checkbox" name="course_option" value="ปวส.(จบม.6)"> ปวส.(จบม.6)</label>
+                    </div>
+
+                    <p>สาขาวิชา</p>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="field_option" value="การบัญชี"> การบัญชี</label>
+                        <label><input type="checkbox" name="field_option" value="การตลาด"> การตลาด</label>
+                        <label><input type="checkbox" name="field_option" value="เทคโนโลยีธุรกิจดิจิทัล"> เทคโนโลยีธุรกิจดิจิทัล</label>
+                        <label><input type="checkbox" name="field_option" value="เทคโนโลยีสารสนเทศ"> เทคโนโลยีสารสนเทศ</label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>ประวัติส่วนตัว</legend>
+                    <div class="form-row">
+                        <label>คำนำหน้า</label>
+                        <select name="prefix">
+                            <option value="นาย">นาย</option>
+                            <option value="นางสาว">นางสาว</option>
+                            <option value="เด็กชาย">เด็กชาย</option>
+                            <option value="เด็กหญิง">เด็กหญิง</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="firstName" placeholder="ชื่อ" required>
+                        <input type="text" name="lastName" placeholder="นามสกุล" required>
+                        <input type="text" name="nickname" placeholder="ชื่อเล่น">
+                    </div>
+
+                    <p>จบการศึกษาระดับ</p>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="grad_level" value="ม.3"> ม.3</label>
+                        <label><input type="checkbox" name="grad_level" value="ม.6"> ม.6</label>
+                        <label><input type="checkbox" name="grad_level" value="ปวช.3"> ปวช.3</label>
+                    </div>
+
+                    <div class="form-row">
+                        <input type="text" name="gpa" placeholder="เกรดเฉลี่ย" maxlength="4" oninput="this.value=this.value.replace(/[^0-9.]/g,'')">
+                        <input type="text" name="old_school" placeholder="โรงเรียนเดิม">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="old_tambol" placeholder="ตำบล(รร)">
+                        <input type="text" name="old_amphur" placeholder="อำเภอ(รร)">
+                        <input type="text" name="old_province" placeholder="จังหวัด(รร)">
+                    </div>
+
+                    <div class="form-row">
+                        <input type="text" name="disease" placeholder="โรคประจำตัว">
+                        <input type="text" name="reason" placeholder="สาเหตุที่เลือกเรียน">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="id_card" placeholder="เลขบัตรประชาชน (13 หลัก)" maxlength="13" oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+                        <input type="text" name="birthdate" placeholder="วันเกิด (วว/ดด/ปปปป)">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="nationality" placeholder="สัญชาติ">
+                        <input type="text" name="race" placeholder="เชื้อชาติ">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="mobile" placeholder="เบอร์มือถือตัวเอง" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+                        <input type="text" name="email" placeholder="อีเมล">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>ที่อยู่ตามทะเบียนบ้าน</legend>
+                    <div class="form-row">
+                        <input type="text" name="reg_houseno" placeholder="บ้านเลขที่">
+                        <input type="text" name="reg_moo" placeholder="หมู่">
+                        <input type="text" name="reg_soi" placeholder="ซอย">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="reg_road" placeholder="ถนน">
+                        <input type="text" name="reg_tambol" placeholder="ตำบล">
+                        <input type="text" name="reg_amphur" placeholder="อำเภอ">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="reg_province" placeholder="จังหวัด">
+                        <input type="text" name="reg_zip" placeholder="รหัสไปรษณีย์" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                        <input type="text" name="reg_phone" placeholder="โทรศัพท์บ้าน" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>ข้อมูลผู้ปกครอง</legend>
+                    <div class="form-row">
+                        <input type="text" name="parent_name" placeholder="ชื่อผู้ปกครอง">
+                        <input type="text" name="parent_lastname" placeholder="นามสกุล">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="parent_age" placeholder="อายุ" maxlength="3" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                        <input type="text" name="relation" placeholder="ความสัมพันธ์">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="parent_mobile" placeholder="เบอร์มือถือผู้ปกครอง" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                        <input type="text" name="occupation" placeholder="อาชีพ">
+                        <input type="text" name="income" placeholder="รายได้" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="workplace" placeholder="สถานที่ทำงาน">
+                        <input type="text" name="work_phone" placeholder="เบอร์ที่ทำงาน" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>ที่อยู่ปัจจุบัน</legend>
+                    <div class="form-row">
+                        <input type="text" name="cur_houseno" placeholder="บ้านเลขที่">
+                        <input type="text" name="cur_moo" placeholder="หมู่">
+                        <input type="text" name="cur_soi" placeholder="ซอย">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="cur_road" placeholder="ถนน">
+                        <input type="text" name="cur_tambol" placeholder="ตำบล">
+                        <input type="text" name="cur_amphur" placeholder="อำเภอ">
+                    </div>
+                    <div class="form-row">
+                        <input type="text" name="cur_province" placeholder="จังหวัด">
+                        <input type="text" name="cur_zip" placeholder="รหัสไปรษณีย์" maxlength="5" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                        <input type="text" name="cur_phone" placeholder="โทรศัพท์บ้าน" maxlength="10" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                    </div>
+                </fieldset>
+
+                <div class="btn-area">
+                    <button type="button" onclick="submitApplication()" class="btn-save" id="btn-submit">ยืนยันการสมัคร</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="page-admin" class="page-section">
+        <div class="admin-box">
+            <div id="login-part">
+                <h2>เข้าสู่ระบบเจ้าหน้าที่</h2>
+                <input style="margin-bottom: 20px;" type="text" id="admin-user" placeholder="ชื่อ"><br>
+                <input type="password" id="admin-pass" placeholder="รหัสผ่าน">
+                <button type="button" onclick="checkLogin()" class="btn-save">Login</button>
+            </div>
+
+            <div id="data-part" style="display:none;">
+                <button type="button" onclick="loadHistory()">🔄 รีเฟรชข้อมูล</button>
+                <div style="overflow-x:auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>สถานะ</th><th>เวลา</th><th>ชื่อ-สกุล</th><th>หลักสูตร</th><th>PDF</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
